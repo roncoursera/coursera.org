@@ -33,7 +33,7 @@ $$
 
 ## The Known Unknowns in Fossil Fuels
 
-```{r fig1, fig.width=8, fig.height=5, echo=False}
+```{r fig1, fig.width=8, fig.height=5, echo=FALSE}
 # MBOE -> BBOE -> BTOE -> GTCO2 -> PPMV
 oil.co2.f95=253744 / 1000 / 7.3 * 3.07 / 8 
 oil.co2.f05=1580342 / 1000 / 7.3 * 3.07 / 8

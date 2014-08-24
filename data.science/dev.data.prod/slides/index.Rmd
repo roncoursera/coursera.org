@@ -6,7 +6,7 @@ job         : Global Warmer
 framework   : html5slides   # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
-widgets     : []            # {mathjax, quiz, bootstrap}
+widgets     : [mathjax]            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
@@ -17,34 +17,50 @@ knit        : slidify::knit2slides
 2. Write using R Markdown
 3. Use an empty line followed by three dashes to separate slides!
 
---- .class #id 
+## Normal Distribution
 
-## Slide 2
+The normal (or Gaussian) distribution is defined as follows:
 
-stuff
-
----
-
-## Slide 3
-
-more stuff
-
+$$latex
+f(x;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}} 
+e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }
+$$
 
 ---
 
-## Slide 4
+## Density Plot
 
-more more stuff
+To generate random draws from a normal distribution we use the **rnorm** function:
 
+```{r block1}
+output <- rnorm(1000, 100, 15);
+```
 
 ---
 
-## Slide 5
+## Bell Shape
 
-more more more stuff
+The normal distribution has the typical bell shape:
 
+```{r block2, fig.width=8, fig.height=5}
+library(ggplot2)
+qplot(output)
+```
 
+---
 
+## Kernel density estimation
 
+We can perform density estimation on the sample:
 
+```{r block3, fig.width=8, fig.height=5}
+plot(density(output))
+``` 
 
+---
+
+## Carl Friedrich Gauß
+
+This little guy had something to do with it
+
+!['Gauss'](http://goo.gl/ZwTTXv)

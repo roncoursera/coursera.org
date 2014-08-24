@@ -1,6 +1,6 @@
 #library(devtools)
 #install_github('slidify', 'ramnathv')
-#install_github('slidify_libraries', 'ramnathv')
+#install_github('slidifyLibraries', 'ramnathv')
 
 library(slidify)
 #author("slides")

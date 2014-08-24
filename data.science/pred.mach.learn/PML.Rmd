@@ -1,7 +1,7 @@
 ---
 title: "Practical Machine Learning: Classification on Weight Lifting Exercise Dataset"
 author: "Ronald Broberg"
-date: "Augist 24, 2014"
+date: "August 24, 2014"
 output: html_document
 ---
 ### Introduction

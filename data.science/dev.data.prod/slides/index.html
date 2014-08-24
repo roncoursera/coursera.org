@@ -15,25 +15,66 @@
 <body style='display: none'>
 	<section class='slides layout-regular template-regular'>
      <article class="" id="slide-1" style="background:;">
-  <h3>Read-And-Delete</h3>
+  <h3>Climate Outcomes</h3>
   <ol>
-<li>Edit YAML front matter</li>
-<li>Write using R Markdown</li>
-<li>Use an empty line followed by three dashes to separate slides!</li>
+<li>How much will CO2 emission warm the earth
+\[
+\Delta = ECS/3.7 * 5.35 * ln(CO2_new/CO2_old) 
+\]</li>
+<li>Depends on how much additional CO2 is emitted</li>
+<li>Depends on how sensitive (ECS) the global climate is to CO2</li>
 </ol>
-
-<h2>Normal Distribution</h2>
-
-<p>The normal (or Gaussian) distribution is defined as follows:</p>
-
-<p>\[
-f(x;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}} 
-e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }
-\]</p>
 
 </article>
 
 <article class="" id="slide-2" style="background:;">
+  <h3>CO2 Emissions: The Known Knowns</h3>
+  <ol>
+<li>~200 PPMV already emitted since pre-industrial era.</li>
+<li>Burning all proved fossil fuels would raise CO2 by about another 350 PPM.</li>
+<li>Oceans absorb about 50% of emissions.</li>
+<li>So total increase could be ~275 PPMV, nearly doubling pre-industrial CO2.</li>
+</ol>
+
+</article>
+
+<article class="" id="slide-3" style="background:;">
+  <h3>The Known Unknowns in Fossil Fuels</h3>
+  <pre><code class="r"># MBOE -&gt; BBOE -&gt; BTOE -&gt; GTCO2 -&gt; PPMV
+oil.co2.f95=253744 / 1000 / 7.3 * 3.07 / 8 
+oil.co2.f05=1580342 / 1000 / 7.3 * 3.07 / 8
+# BCFG -&gt; TCMG -&gt; BTOE -&gt; GTCO2 -&gt; PPMV 
+gas.co2.f05=12224190 * 0.0283168 / 1000 * 0.9 * 2.35 / 8
+gas.co2.f95=1950093 * 0.0283168 / 1000 * 0.9 * 2.35 / 8
+gas.co2.mu=(gas.co2.f05+gas.co2.f95)/2 
+gas.co2.sigma=(gas.co2.f05-gas.co2.f95)/4 
+oil.co2.mu=(oil.co2.f05+oil.co2.f95)/2
+oil.co2.sigma=(oil.co2.f05+oil.co2.f95)/4
+# MT COAL -&gt; BT COAL -&gt; BTOE -&gt; GTCO2 -&gt; PPMV
+coal.co2.mu=1800000 / 1000 / 2.25 * 3.96 / 8
+coal.co2.sigma=900000 / 1000 / 2.25 * 3.96 / 8
+x = 0:(coal.co2.mu+2*coal.co2.sigma) 
+coalcum=pnorm(seq(1,800,by=8),coal.co2.mu,coal.co2.sigma)
+gascum=pnorm(seq(1,100,by=1),gas.co2.mu,gas.co2.sigma)
+oilcum=pnorm(seq(1,100,by=1),oil.co2.mu,oil.co2.sigma)
+coalcum=coalcum*880
+gascum=gascum*93
+oilcum=oilcum*96
+dfcum=data.frame(x=seq(1,100),coalcum,gascum,oilcum)
+plot(dfcum$coalcum ~ dfcum$x, type=&#39;l&#39;, ylim=c(0,1000), 
+    xlab=&quot;Percentage of Potential Undiscovered Fuels&quot;,ylab=&quot;CO2 Emissions in PPMV&quot;,col=&quot;red&quot;)
+lines(dfcum$coalcum+dfcum$oilcum ~ dfcum$x, type=&#39;l&#39;, ylim=c(0,1000), col=&quot;green&quot;)
+lines(dfcum$coalcum+dfcum$oilcum+dfcum$gascum ~ dfcum$x, type=&#39;l&#39;, ylim=c(0,1000),col=&quot;blue&quot;)
+title(main=&quot;Potential CO2 releases from Undiscovered Fuel Sources&quot;,
+    sub=&quot;Oil and Gas estimates from USGS; Coal Estimates from Oil and Gas Journal&quot;)
+legend(&quot;topleft&quot;, legend=c(&quot;Oil&quot;,&quot;Natural Gas&quot;, &quot;Coal&quot;), col=c(&quot;blue&quot;,&quot;green&quot;,&quot;red&quot;), lty=1, bty=&#39;n&#39;)
+</code></pre>
+
+<p><img src="assets/fig/fig1.png" alt="plot of chunk fig1"> </p>
+
+</article>
+
+<article class="" id="slide-4" style="background:;">
   <h3>Density Plot</h3>
   <p>To generate random draws from a normal distribution we use the <strong>rnorm</strong> function:</p>
 
@@ -42,7 +83,7 @@ e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }
 
 </article>
 
-<article class="" id="slide-3" style="background:;">
+<article class="" id="slide-5" style="background:;">
   <h3>Bell Shape</h3>
   <p>The normal distribution has the typical bell shape:</p>
 
@@ -57,7 +98,7 @@ qplot(output)
 
 </article>
 
-<article class="" id="slide-4" style="background:;">
+<article class="" id="slide-6" style="background:;">
   <h3>Kernel density estimation</h3>
   <p>We can perform density estimation on the sample:</p>
 
@@ -68,12 +109,17 @@ qplot(output)
 
 </article>
 
-<article class="" id="slide-5" style="background:;">
+<article class="" id="slide-7" style="background:;">
   <h3>Carl Friedrich Gauﬂ</h3>
   <p>This little guy had something to do with it</p>
 
 <p><img src="http://goo.gl/ZwTTXv" alt="&#39;Gauss&#39;"></p>
 
+</article>
+
+<article class="" id="slide-8" style="background:;">
+  <h3></h3>
+  
 </article>
 
   </section>

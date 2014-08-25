@@ -36,7 +36,8 @@ println ("3 fold accuracy: $(mean(accuracy))")
 # 3 fold accuracy: 0.982670744138634
 
 model = build_forest(labels, features, nfeatures, ntrees);
-
+predictions=apply_forest(model, features);
+confusion_matrix(labels, predictions)
 
 # ntrees=100;
 
@@ -61,7 +62,6 @@ sum(names(dftest3[1:(end-1)]).!=names(dftrain3[1:(end-1)])) # 0 <- no differnces
 
 # skip non-numeric features
 tfeatures=array(dftest3[:,8:(end-1)]);
-model = build_forest(labels, features, nfeatures, ntrees);
 preds=apply_forest(model, tfeatures);
 
 #=
@@ -123,4 +123,19 @@ Accuracy: 0.9827217125382263
 Kappa:    0.9781151915253892
 
 Mean Accuracy: 0.982670744138634
+=#
+
+# =======================================
+# Confusion Matrix
+# =======================================
+#=
+Classes:  {"A","B","C","D","E"}
+Matrix:   5x5 Array{Int64,2}:
+ 5580     0     0     0     0
+    2  3795     0     0     0
+    0     4  3418     0     0
+    0     0     6  3210     0
+    0     0     1     3  3603
+Accuracy: 0.9991845887269392
+Kappa:    0.9989686241058846
 =#

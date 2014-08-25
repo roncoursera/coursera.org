@@ -13,14 +13,14 @@ knit        : slidify::knit2slides
 
 ### Climate Outcomes
 
-1. How much will CO2 emission warm the earth?
+How much will future CO2 emissions warm the earth?
 
 $$latex
 \Delta = \{frac}{ECS}{3.7} * 5.35 * ln(\frac{CO2_new}{CO2_old}) 
 $$
 
-2. Depends on how much additional CO2 is emitted
-3. Depends on how sensitive (ECS) the global climate is to CO2
+1. Depends on how much additional CO2 is emitted
+2. Depends on how sensitive (ECS) the global climate is to CO2
 
 ---
 
@@ -34,6 +34,9 @@ $$
 ---
 
 ### The Known Unknowns in Fossil Fuels
+
+But what about potential increases in proved resources?
+New Discoveries. Rising Prices. Improved Technologies.
 
 ![plot of chunk fig1](assets/fig/fig1.png) 
 
@@ -49,7 +52,7 @@ Derived from Meinhausen 2009
 
 ### Putting it together
 
-Using CO2 and ECS estimates to find modelled temperature rises
+Using futured CO2 emissions and ECS estimates to find modelled temperature rises
 
 !['Predictions'](http://oi58.tinypic.com/2llltmd.jpg)
 

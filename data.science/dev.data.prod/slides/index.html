@@ -17,10 +17,14 @@
      <article class="" id="slide-1" style="background:;">
   <h3>Climate Outcomes</h3>
   <ol>
-<li>How much will CO2 emission warm the earth
-\[
+<li>How much will CO2 emission warm the earth?</li>
+</ol>
+
+<p>\[
 \Delta = ECS/3.7 * 5.35 * ln(CO2_new/CO2_old) 
-\]</li>
+\]</p>
+
+<ol>
 <li>Depends on how much additional CO2 is emitted</li>
 <li>Depends on how sensitive (ECS) the global climate is to CO2</li>
 </ol>
@@ -45,17 +49,15 @@
 </article>
 
 <article class="" id="slide-4" style="background:;">
-  <h3>Density Plot</h3>
-  <p>To generate random draws from a normal distribution we use the <strong>rnorm</strong> function:</p>
+  <h3>Equilibrium Climate Sensitivity</h3>
+  <p>ECS can be modeled as a gamma distribution
+<img src="assets/fig/fig2.png" alt="plot of chunk fig2"> </p>
 
-<pre><code class="r">output &lt;- rnorm(1000, 100, 15);
-</code></pre>
+<h2>Derived from Meinhausen 2009</h2>
 
-</article>
+<h2>Bell Shape</h2>
 
-<article class="" id="slide-5" style="background:;">
-  <h3>Bell Shape</h3>
-  <p>The normal distribution has the typical bell shape:</p>
+<p>The normal distribution has the typical bell shape:</p>
 
 <pre><code class="r">library(ggplot2)
 qplot(output)
@@ -68,7 +70,7 @@ qplot(output)
 
 </article>
 
-<article class="" id="slide-6" style="background:;">
+<article class="" id="slide-5" style="background:;">
   <h3>Kernel density estimation</h3>
   <p>We can perform density estimation on the sample:</p>
 
@@ -79,7 +81,7 @@ qplot(output)
 
 </article>
 
-<article class="" id="slide-7" style="background:;">
+<article class="" id="slide-6" style="background:;">
   <h3>Carl Friedrich Gauﬂ</h3>
   <p>This little guy had something to do with it</p>
 
@@ -87,7 +89,7 @@ qplot(output)
 
 </article>
 
-<article class="" id="slide-8" style="background:;">
+<article class="" id="slide-7" style="background:;">
   <h3></h3>
   
 </article>

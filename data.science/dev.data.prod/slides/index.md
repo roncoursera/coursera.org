@@ -13,10 +13,12 @@ knit        : slidify::knit2slides
 
 ## Climate Outcomes
 
-1. How much will CO2 emission warm the earth
+1. How much will CO2 emission warm the earth?
+
 $$latex
 \Delta = ECS/3.7 * 5.35 * ln(CO2_new/CO2_old) 
 $$
+
 2. Depends on how much additional CO2 is emitted
 3. Depends on how sensitive (ECS) the global climate is to CO2
 
@@ -37,15 +39,11 @@ $$
 
 ---
 
-## Density Plot
+## Equilibrium Climate Sensitivity
 
-To generate random draws from a normal distribution we use the **rnorm** function:
-
-
-```r
-output <- rnorm(1000, 100, 15);
-```
-
+ECS can be modeled as a gamma distribution
+![plot of chunk fig2](assets/fig/fig2.png) 
+Derived from Meinhausen 2009
 ---
 
 ## Bell Shape

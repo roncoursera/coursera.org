@@ -55,6 +55,21 @@ println ("3 fold accuracy: $(mean(accuracy))");
 # 3 fold accuracy: 0.982670744138634
 ```
 
+The confusion matrix, which is run against the model trained on the full data set, has even a higher accuracy, as expected.
+
+A | B | C | D | E
+--- | --- | --- | --- | ---
+5580 | 0 | 0 | 0 | 0
+2 | 3795 | 0 | 0 | 0
+0 | 4 | 3418 | 0 | 0
+0 | 0 | 6 | 3210 | 0
+0 | 0 | 1 | 3 | 3603
+
+Accuracy: 0.9991845887269392
+
+Kappa:    0.9989686241058846
+
+
 ### Model Results
 
 The model was run against a set of 20 lines of test data to classify each as one of the 5 exercise classes (A-E). The test data was filtered in a manner similar to that used for the training data.  Interestingly, while the training data had columns without data (""), the testing data only had NA columns. Nevertheless, save for the '*label*' column in the training dataset and the '*problem_id*' in the test dataset, both datasets had the same columns after filtering as verified by a column-by-column comparison.

@@ -92,6 +92,57 @@ size(nfeatures,2) # 52</code></pre>
 accuracy=nfoldCV_forest(labels, features, nfeatures, ntrees, 3);
 println (&quot;3 fold accuracy: $(mean(accuracy))&quot;);
 # 3 fold accuracy: 0.982670744138634</code></pre>
+<p>The confusion matrix, which is run against the model trained on the full data set, has even a higher accuracy, as expected.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">A</th>
+<th align="left">B</th>
+<th align="left">C</th>
+<th align="left">D</th>
+<th align="left">E</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">5580</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">3795</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr class="odd">
+<td align="left">0</td>
+<td align="left">4</td>
+<td align="left">3418</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr class="even">
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">6</td>
+<td align="left">3210</td>
+<td align="left">0</td>
+</tr>
+<tr class="odd">
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">3603</td>
+</tr>
+</tbody>
+</table>
+<p>Accuracy: 0.9991845887269392</p>
+<p>Kappa: 0.9989686241058846</p>
 </div>
 <div id="model-results" class="section level3">
 <h3>Model Results</h3>

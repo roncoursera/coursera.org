@@ -11,12 +11,12 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
 
-## Climate Outcomes
+### Climate Outcomes
 
 1. How much will CO2 emission warm the earth?
 
 $$latex
-\Delta = ECS/3.7 * 5.35 * ln(CO2_new/CO2_old) 
+\Delta = \{frac}{ECS}{3.7} * 5.35 * ln(\frac{CO2_new}{CO2_old}) 
 $$
 
 2. Depends on how much additional CO2 is emitted
@@ -24,7 +24,7 @@ $$
 
 ---
 
-## CO2 Emissions: The Known Knowns
+### CO2 Emissions: The Known Knowns
 
 1. ~200 PPMV already emitted since pre-industrial era.
 2. Burning all proved fossil fuels would raise CO2 by about another 350 PPM.
@@ -33,7 +33,7 @@ $$
 
 ---
 
-## The Known Unknowns in Fossil Fuels
+### The Known Unknowns in Fossil Fuels
 
 ```{r fig1, fig.width=8, fig.height=5, echo=FALSE}
 # MBOE -> BBOE -> BTOE -> GTCO2 -> PPMV
@@ -68,9 +68,10 @@ legend("topleft", legend=c("Oil","Natural Gas", "Coal"), col=c("blue","green","r
 
 ---
 
-## Equilibrium Climate Sensitivity
+### Equilibrium Climate Sensitivity
 
-ECS can be modeled as a gamma distribution
+ECS can be modelled as a gamma distribution
+Derived from Meinhausen 2009
 ```{r fig2, fig.width=8, fig.height=5, echo=FALSE}
 # mean = climate sensitivity ~= 3C
 alpha = 12			# width of dist, higher is narrower
@@ -84,34 +85,13 @@ yscale = max(Ts_gamma$y)*1.6
 plot(Ts_gamma, type='l', ylab="Probability", xlab="ECS Estimate")
 title(main="Distribution of Various Estimates of Equilibrium Climate Sensitivities")
 ```
-Derived from Meinhausen 2009
----
-
-## Bell Shape
-
-The normal distribution has the typical bell shape:
-
-```{r block2, fig.width=8, fig.height=5}
-library(ggplot2)
-qplot(output)
-```
 
 ---
 
-## Kernel density estimation
+### Putting it together
 
-We can perform density estimation on the sample:
+Using CO2 and ECS estimates to find modelled temperature rises
 
-```{r block3, fig.width=8, fig.height=5}
-plot(density(output))
-``` 
-
----
-
-## Carl Friedrich Gauﬂ
-
-This little guy had something to do with it
-
-!['Gauss'](http://goo.gl/ZwTTXv)
+!['Predictions'](http://oi58.tinypic.com/2llltmd.jpg)
 
 ---

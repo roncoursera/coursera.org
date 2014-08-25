@@ -11,12 +11,12 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
 
-## Climate Outcomes
+### Climate Outcomes
 
 1. How much will CO2 emission warm the earth?
 
 $$latex
-\Delta = ECS/3.7 * 5.35 * ln(CO2_new/CO2_old) 
+\Delta = \{frac}{ECS}{3.7} * 5.35 * ln(\frac{CO2_new}{CO2_old}) 
 $$
 
 2. Depends on how much additional CO2 is emitted
@@ -24,7 +24,7 @@ $$
 
 ---
 
-## CO2 Emissions: The Known Knowns
+### CO2 Emissions: The Known Knowns
 
 1. ~200 PPMV already emitted since pre-industrial era.
 2. Burning all proved fossil fuels would raise CO2 by about another 350 PPM.
@@ -33,54 +33,24 @@ $$
 
 ---
 
-## The Known Unknowns in Fossil Fuels
+### The Known Unknowns in Fossil Fuels
 
 ![plot of chunk fig1](assets/fig/fig1.png) 
 
 ---
 
-## Equilibrium Climate Sensitivity
+### Equilibrium Climate Sensitivity
 
-ECS can be modeled as a gamma distribution
-![plot of chunk fig2](assets/fig/fig2.png) 
+ECS can be modelled as a gamma distribution
 Derived from Meinhausen 2009
----
-
-## Bell Shape
-
-The normal distribution has the typical bell shape:
-
-
-```r
-library(ggplot2)
-qplot(output)
-```
-
-```
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
-```
-
-![plot of chunk block2](assets/fig/block2.png) 
+![plot of chunk fig2](assets/fig/fig2.png) 
 
 ---
 
-## Kernel density estimation
+### Putting it together
 
-We can perform density estimation on the sample:
+Using CO2 and ECS estimates to find modelled temperature rises
 
-
-```r
-plot(density(output))
-```
-
-![plot of chunk block3](assets/fig/block3.png) 
-
----
-
-## Carl Friedrich Gauﬂ
-
-This little guy had something to do with it
-
-!['Gauss'](http://goo.gl/ZwTTXv)
+!['Predictions'](http://oi58.tinypic.com/2llltmd.jpg)
 
 ---

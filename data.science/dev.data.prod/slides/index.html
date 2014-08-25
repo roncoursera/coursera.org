@@ -21,7 +21,7 @@
 </ol>
 
 <p>\[
-\Delta = ECS/3.7 * 5.35 * ln(CO2_new/CO2_old) 
+\Delta = \{frac}{ECS}{3.7} * 5.35 * ln(\frac{CO2_new}{CO2_old}) 
 \]</p>
 
 <ol>
@@ -50,46 +50,21 @@
 
 <article class="" id="slide-4" style="background:;">
   <h3>Equilibrium Climate Sensitivity</h3>
-  <p>ECS can be modeled as a gamma distribution
+  <p>ECS can be modelled as a gamma distribution
+Derived from Meinhausen 2009
 <img src="assets/fig/fig2.png" alt="plot of chunk fig2"> </p>
-
-<h2>Derived from Meinhausen 2009</h2>
-
-<h2>Bell Shape</h2>
-
-<p>The normal distribution has the typical bell shape:</p>
-
-<pre><code class="r">library(ggplot2)
-qplot(output)
-</code></pre>
-
-<pre><code>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
-</code></pre>
-
-<p><img src="assets/fig/block2.png" alt="plot of chunk block2"> </p>
 
 </article>
 
 <article class="" id="slide-5" style="background:;">
-  <h3>Kernel density estimation</h3>
-  <p>We can perform density estimation on the sample:</p>
+  <h3>Putting it together</h3>
+  <p>Using CO2 and ECS estimates to find modelled temperature rises</p>
 
-<pre><code class="r">plot(density(output))
-</code></pre>
-
-<p><img src="assets/fig/block3.png" alt="plot of chunk block3"> </p>
+<p><img src="http://oi58.tinypic.com/2llltmd.jpg" alt="&#39;Predictions&#39;"></p>
 
 </article>
 
 <article class="" id="slide-6" style="background:;">
-  <h3>Carl Friedrich Gauﬂ</h3>
-  <p>This little guy had something to do with it</p>
-
-<p><img src="http://goo.gl/ZwTTXv" alt="&#39;Gauss&#39;"></p>
-
-</article>
-
-<article class="" id="slide-7" style="background:;">
   <h3></h3>
   
 </article>

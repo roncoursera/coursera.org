@@ -327,8 +327,8 @@ grep grocery quiz3e.txt | wc -l
 
 
 # Quiz 3.6 (F)
-# well|pretty|sure|granny|old|bagpipes|garage|dust|off
-# pretty|granny|old|bagpipes|garage|dust|off
+# well\|pretty\|sure\|granny\|old\|bagpipes\|garage\|dust\|off
+# pretty\|granny\|old\|bagpipes\|garage\|dust\|off
 cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " " | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "pretty\|granny\|old\|bagpipes\|garage\|dust\|off" | tr " " "\n" > y
 cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "pretty\|granny\|old\|bagpipes\|garage\|dust\|off" | tr " " "\n" >> y
 cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "pretty\|granny\|old\|bagpipes\|garage\|dust\|off" | tr " " "\n" >> y
@@ -395,10 +395,9 @@ grep insane quiz3j.txt | wc -l
 
 '''
 # after ice bucket challenge louis push long wet hair eyes little
-cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[.;:?!()]" "\n" | tr "," " " | sed "s/ for /:/g" | sed "s/ and /:/g" | sed "s/ nor /:/g" | sed "s/ but /:/g" | sed "s/ or /:/g" | sed "s/ yet /:/g" | sed "s/ so /:/g" | sed "s/ to /:/g" | sed "s/ in /:/g"  | sed"s/ of /:/g" | sed "s/ that /:/g" | sed "s/ - /:/g" | sed "s/ from /:/g" | sed "s/ after /:/g" | sed "s/ on /:/g" |tr ":" "\n" | sed "s/ as /:/g" | sed "s/ by /:/g"| sed "s/ with /:/g" |tr ":" "\n"  > en_US.blogs.phrases.txt
-cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[.;:?!()]" "\n" | tr "," " " | sed "s/ for /:/g" | sed "s/ and /:/g" | sed "s/ nor /:/g" | sed "s/ but /:/g" | sed "s/ or /:/g" | sed "s/ yet /:/g" | sed "s/ so /:/g" | sed "s/ to /:/g" | sed "s/ in /:/g"  | sed"s/ of /:/g" | sed "s/ that /:/g" | sed "s/ - /:/g" | sed "s/ from /:/g" | sed "s/ after /:/g" | sed "s/ on /:/g" |tr ":" "\n" | sed "s/ as /:/g" | sed "s/ by /:/g"| sed "s/ with /:/g" |tr ":" "\n"  > en_US.news.phrases.txt
-cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[.;:?!()]" "\n" | tr "," " " | sed "s/ for /:/g" | sed "s/ and /:/g" | sed "s/ nor /:/g" | sed "s/ but /:/g" | sed "s/ or /:/g" | sed "s/ yet /:/g" | sed "s/ so /:/g" | sed "s/ to /:/g" | sed "s/ in /:/g"  | sed"s/ of /:/g" | sed "s/ that /:/g" | sed "s/ - /:/g" | sed "s/ from /:/g" | sed "s/ after /:/g" | sed "s/ on /:/g" |tr ":" "\n" | sed "s/ as /:/g" | sed "s/ by /:/g"| sed "s/ with /:/g" |tr ":" "\n"  > en_US.twitter.phrases.txt
-
+cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[.;:?!()]" "\n" | tr "," " " | sed "s/ for /:/g" | sed "s/ and /:/g" | sed "s/ nor /:/g" | sed "s/ but /:/g" | sed "s/ or /:/g" | sed "s/ yet /:/g" | sed "s/ so /:/g" | sed "s/ to /:/g" | sed "s/ in /:/g"  | sed "s/ of /:/g" | sed "s/ that /:/g" | sed "s/ - /:/g" | sed "s/ from /:/g" | sed "s/ after /:/g" | sed "s/ on /:/g" |tr ":" "\n" | sed "s/ as /:/g" | sed "s/ by /:/g"| sed "s/ with /:/g" |tr ":" "\n"  > all.phrases.txt
+cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[.;:?!()]" "\n" | tr "," " " | sed "s/ for /:/g" | sed "s/ and /:/g" | sed "s/ nor /:/g" | sed "s/ but /:/g" | sed "s/ or /:/g" | sed "s/ yet /:/g" | sed "s/ so /:/g" | sed "s/ to /:/g" | sed "s/ in /:/g"  | sed "s/ of /:/g" | sed "s/ that /:/g" | sed "s/ - /:/g" | sed "s/ from /:/g" | sed "s/ after /:/g" | sed "s/ on /:/g" |tr ":" "\n" | sed "s/ as /:/g" | sed "s/ by /:/g"| sed "s/ with /:/g" |tr ":" "\n"  >> all.phrases.txt
+cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[.;:?!()]" "\n" | tr "," " " | sed "s/ for /:/g" | sed "s/ and /:/g" | sed "s/ nor /:/g" | sed "s/ but /:/g" | sed "s/ or /:/g" | sed "s/ yet /:/g" | sed "s/ so /:/g" | sed "s/ to /:/g" | sed "s/ in /:/g"  | sed "s/ of /:/g" | sed "s/ that /:/g" | sed "s/ - /:/g" | sed "s/ from /:/g" | sed "s/ after /:/g" | sed "s/ on /:/g" |tr ":" "\n" | sed "s/ as /:/g" | sed "s/ by /:/g"| sed "s/ with /:/g" |tr ":" "\n"  >> all.phrases.txt
 
 cat en_US.blogs.txt | tr "[.;!?]"  "\n" | tr "[A-Z]" "[a-z]" | tr "," " " > all.sentences.txt
 cat en_US.news.txt | tr "[.;!?]"  "\n" | tr "[A-Z]" "[a-z]" | tr "," " " >> all.sentences.txt
@@ -417,7 +416,11 @@ grep "case of soda"  all.sentences.txt | wc -l
 grep "case of cheese"  all.sentences.txt | wc -l
 # 27 | 0 | 1 | 0
 
-# 3257 | 41 | 195 | 1531
+grep -w "guy\|front\|just\|bought\|pound\|bacon\|bouquet\|case" all.sentences.txt | grep "case of beer" | wc -l
+grep -w "guy\|front\|just\|bought\|pound\|bacon\|bouquet\|case" all.sentences.txt | grep "case of pretzels" | wc -l
+grep -w "guy\|front\|just\|bought\|pound\|bacon\|bouquet\|case" all.sentences.txt | grep "case of soda" | wc -l
+grep -w "guy\|front\|just\|bought\|pound\|bacon\|bouquet\|case" all.sentences.txt | grep "case of cheese" | wc -l
+# 27 | 0 | 1 | 0
 
 bow == 3gram  "case of beer"
 rank = "case of beer"
@@ -435,11 +438,16 @@ grep "mean the universe" all.sentences.txt | wc -l
 grep "mean the world" all.sentences.txt | wc -l
 # 25 | 4 | 3 | 305
 
-# 4698 | 2378 | 226 | 3156
+# remove mean since in target search string
+grep -w "reason\|smile\|everyday\|follow\|please" all.sentences.txt | grep "mean the most" | wc -l
+grep -w "reason\|smile\|everyday\|follow\|please" all.sentences.txt | grep "mean the best" | wc -l
+grep -w "reason\|smile\|everyday\|follow\|please" all.sentences.txt | grep "mean the universe" | wc -l
+grep -w "reason\|smile\|everyday\|follow\|please" all.sentences.txt | grep "mean the world" | wc -l
+# 1 | 0 | 0 | 87
 
-bow != 3gram
-2o3 = null
-rank = "mean the world"
+bow = 3gram
+2o3 = 3gram
+rank => 3gram
 
 # -------------------------------------
 
@@ -455,7 +463,11 @@ grep "me the bluest" all.sentences.txt | wc -l
 grep "me the happiest" all.sentences.txt | wc -l
 # 0 | 0 | 0 | 45
 
-# 0 | 11 | 2 | 79
+grep -w "sunshine\|follow\|make" all.sentences.txt | grep "me the smelliest" | wc -l
+grep -w "sunshine\|follow\|make" all.sentences.txt | grep "me the saddest" | wc -l
+grep -w "sunshine\|follow\|make" all.sentences.txt | grep "me the bluest" | wc -l
+grep -w "sunshine\|follow\|make" all.sentences.txt | grep "me the happiest" | wc -l
+# 0 | 0 | 0 | 31
 
 bow = 3gram "me the happiest"
 2o3 = "me the happiest"
@@ -475,10 +487,25 @@ grep "but the players" all.sentences.txt | wc -l
 grep "but the crowd" all.sentences.txt | wc -l
 # 0 | 18| 22 | 43
 
-# 21 | 1086 | 0 | 391 (with 'still')
-
-bow != ngram
-2o3 = "the crowd"
+grep -w "early\|observations\|bills\|game\|offense\|struggling" all.sentences.txt | grep "but the referees" | wc -l
+grep -w "early\|observations\|bills\|game\|offense\|struggling" all.sentences.txt | grep "but the defense" | wc -l
+grep -w "early\|observations\|bills\|game\|offense\|struggling" all.sentences.txt | grep "but the players" | wc -l
+grep -w "early\|observations\|bills\|game\|offense\|struggling" all.sentences.txt | grep "but the crowd" | wc -l
+# 0 | 1 | 3 | 2
+ 
+grep -w "offense\|struggling" all.sentences.txt | grep "but the referees" | wc -l
+grep -w "offense\|struggling" all.sentences.txt | grep "but the defense" | wc -l
+grep -w "offense\|struggling" all.sentences.txt | grep "but the players" | wc -l
+grep -w "offense\|struggling" all.sentences.txt | grep "but the crowd" | wc -l
+# 0 | 1 | 1 | 0
+ 
+grep -w "offense\|struggling" all.sentences.txt | grep "the referees" | wc -l
+grep -w "offense\|struggling" all.sentences.txt | grep "the defense" | wc -l
+grep -w "offense\|struggling" all.sentences.txt | grep "the players" | wc -l
+grep -w "offense\|struggling" all.sentences.txt | grep "the crowd" | wc -l
+# 0 } 83 | 10 | 7
+bow != 3gram 
+2o3 = "but the crowd"
 rank = "the crowd"
 
 # -------------------------------------
@@ -487,18 +514,32 @@ grep "the movies" all.sentences.txt | wc -l
 grep "the beach" all.sentences.txt | wc -l
 grep "the mall" all.sentences.txt | wc -l
 grep "the grocery" all.sentences.txt | wc -l
-# 1183 | 3707 | 1613 | 948
+# 1183 | 3707 | 1613 | 948 
+# 7234 "the movie"
 
 grep "at the movies" all.sentences.txt | wc -l
 grep "at the beach" all.sentences.txt | wc -l
 grep "at the mall" all.sentences.txt | wc -l
 grep "at the grocery" all.sentences.txt | wc -l
 # 172 | 604 | 416 | 260
+# 333 "at the movie"
 
-# 691 | 709 | 2119 | 211 (with 'go')
-# 69 | 21 | 54 | 0 (without 'go')
+grep -w "go\|romance\|date" all.sentences.txt | grep "at the movies" | wc -l
+grep -w "go\|romance\|date" all.sentences.txt | grep "at the beach" | wc -l
+grep -w "go\|romance\|date" all.sentences.txt | grep "at the mall" | wc -l
+grep -w "go\|romance\|date" all.sentences.txt | grep "at the grocery" | wc -l
+# 5 | 17 | 11 | 11 (with 'go')
+# 9 "at the movie"
 
-bow != ngram (in both cases)
+grep -w "romance\|date" all.sentences.txt | grep "at the movies" | wc -l
+grep -w "romance\|date" all.sentences.txt | grep "at the beach" | wc -l
+grep -w "romance\|date" all.sentences.txt | grep "at the mall" | wc -l
+grep -w "romance\|date" all.sentences.txt | grep "at the grocery" | wc -l
+# 2 | 1 | 0 | 1 (without 'go')
+# 5 "at the movie"
+
+bow == 3gram (in 1st case)
+bow != 3gram (in 2nd case)
 2o3 = "at the beach"
 rank = "at the beach"
 
@@ -516,15 +557,14 @@ grep "on my way" all.sentences.txt | wc -l
 grep "on my phone" all.sentences.txt | wc -l
 # 9 | 6 | 2381 | 767
 
-# 531 | 0 | 0 | 1948 (with 'well' 'sure') (this result does not make sense)
-# 801 | 73 | 17293 | 2540 (without 'well' 'sure')
+grep -w "pretty\|granny\|old\|bagpipes\|garage\|dust\|off" all.sentences.txt | grep "on my horse" | wc -l
+grep -w "pretty\|granny\|old\|bagpipes\|garage\|dust\|off" all.sentences.txt | grep "on my motorcycle" | wc -l
+grep -w "pretty\|granny\|old\|bagpipes\|garage\|dust\|off" all.sentences.txt | grep "on my way" | wc -l
+grep -w "pretty\|granny\|old\|bagpipes\|garage\|dust\|off" all.sentences.txt | grep "on my phone" | wc -l
+# 1 | 0 | 43 | 21 (without 'well' 'sure')
 
-bow1 != 3gram
-bow2 == 3gram
-
+bow == 3gram
 2of3 = "on my way"
-
-rank = "on my phone" (on first bad result)
 rank = "on my way" (on second result)
 
 # -------------------------------------
@@ -541,8 +581,11 @@ grep "quite some time" all.sentences.txt | wc -l
 grep "quite some weeks" all.sentences.txt | wc -l
 # 2 | 1 | 376 | 0
 
-# 24898 | 128302 | 136922 | 13331 (almost everything)
-# 0 | 7917 | 7391 | 430 (restricted)
+grep -w "tomorrow\|love\|film\|seen" all.sentences.txt | grep "quite some years" | wc -l
+grep -w "tomorrow\|love\|film\|seen" all.sentences.txt | grep "quite some thing" | wc -l
+grep -w "tomorrow\|love\|film\|seen" all.sentences.txt | grep "quite some time" | wc -l
+grep -w "tomorrow\|love\|film\|seen" all.sentences.txt | grep "quite some weeks" | wc -l
+# 0 | 0 | 16 | 0 (restricted)
 
 bow == 3gram "quite some time" (not restricted)
 bow != 3gram "quite some time" (restricted)
@@ -563,11 +606,16 @@ grep "his little toes" all.sentences.txt | wc -l
 grep "his little fingers" all.sentences.txt | wc -l
 # 1 | 3 | 0 | 4
 
-# 15449 | 8999 | 798 | 688
+#after\|ice\|bucket\|challenge\|louis\|push\|long\|wet\|hair\|eyes\|little
+grep -w "after\|ice\|bucket\|challenge\|louis\|push\|long\|wet\|hair" all.sentences.txt | grep "his little ears" | wc -l
+grep -w "after\|ice\|bucket\|challenge\|louis\|push\|long\|wet\|hair" all.sentences.txt | grep "his little eyes" | wc -l
+grep -w "after\|ice\|bucket\|challenge\|louis\|push\|long\|wet\|hair" all.sentences.txt | grep "his little toes" | wc -l
+grep -w "after\|ice\|bucket\|challenge\|louis\|push\|long\|wet\|hair" all.sentences.txt | grep "his little fingers" | wc -l
+# 0 | 0 | 0 | 1
 
-bow != 3gram
+bow == 3gram
 2o3 => "his little fingers"
-rank => "tie between eyes and fingers"
+rank => "his little fingers"
 
 # -------------------------------------
 
@@ -583,12 +631,46 @@ grep "during the hard" all.sentences.txt | wc -l
 grep "during the bad" all.sentences.txt | wc -l
 # 0 | 0 | 4 | 6
 
-# 1913 | 826 | 7056 | 6797
+grep -w "grateful\|good\|times\|keep\|faith" all.sentences.txt | grep "during the sad" | wc -l
+grep -w "grateful\|good\|times\|keep\|faith" all.sentences.txt | grep "during the worse" | wc -l
+grep -w "grateful\|good\|times\|keep\|faith" all.sentences.txt | grep "during the hard" | wc -l
+grep -w "grateful\|good\|times\|keep\|faith" all.sentences.txt | grep "during the bad" | wc -l
+# 0 | 0 | 1| 3 
 
-bow != 3gram
-2o3 => "during the hard"
-rank = "during the hard"
+bow = 3gram
+2o3 = 3gram
+rank = "during the bad"
+
+# -------------------------------------
+
+grep "be asleep" all.sentences.txt | wc -l
+grep "be callous" all.sentences.txt | wc -l
+grep "be insensitive" all.sentences.txt | wc -l
+grep "be insane" all.sentences.txt | wc -l
+# 112 | 3 | 6 | 106
+
+grep "must be asleep" all.sentences.txt | wc -l
+grep "must be callous" all.sentences.txt | wc -l
+grep "must be insensitive" all.sentences.txt | wc -l
+grep "must be insane" all.sentences.txt | wc -l
+# 2| 0 | 0 | 8
+
+grep -w "cutest\|thing\|ever\|seen" all.sentences.txt | grep "must be asleep" | wc -l
+grep -w "cutest\|thing\|ever\|seen" all.sentences.txt | grep "must be callous" | wc -l
+grep -w "cutest\|thing\|ever\|seen" all.sentences.txt | grep "must be insensitive" | wc -l
+grep -w "cutest\|thing\|ever\|seen" all.sentences.txt | grep "must be insane" | wc -l
+# 0 | 0 | 0 | 0
+
+grep -w "cutest\|thing\|ever\|seen" all.sentences.txt | grep "be asleep" | wc -l
+grep -w "cutest\|thing\|ever\|seen" all.sentences.txt | grep "be callous" | wc -l
+grep -w "cutest\|thing\|ever\|seen" all.sentences.txt | grep "be insensitive" | wc -l
+grep -w "cutest\|thing\|ever\|seen" all.sentences.txt | grep "be insane" | wc -l
+# 1 | 0 | 0 | 3
+
+
 '''
+
+
 
 
 

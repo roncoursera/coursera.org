@@ -262,4 +262,341 @@ cat en_US.twitter.txt | tr " " "\n" | grep ".*ed$" | grep -v "[^a-zA-Z]" >> verb
 \UnxUtils\bin\sort.exe -fu verbs.ed.txt > x
 mv x verbs.ed.txt
 
+# Quiz 3.1 (A)
+#  guy\|front\|just\|bought\|pound\|bacon\|bouquet|case
+cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "guy\|front\|just\|bought\|pound\|bacon\|bouquet|case" | tr " " "\n" > y
+cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "guy\|front\|just\|bought\|pound\|bacon\|bouquet|case" | tr " " "\n" >> y
+cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "guy\|front\|just\|bought\|pound\|bacon\|bouquet|case" | tr " " "\n" >> y
+move y quiz3a.txt
+grep beer quiz3a.txt | wc -l 
+grep pretzels quiz3a.txt | wc -l 
+grep soda quiz3a.txt | wc -l 
+grep cheese quiz3a.txt | wc -l
+# 3257 | 41 | 195 | 1531
+
+# Quiz 3.2 (B)
+# reason smile everyday follow please mean 
+cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "reason\|smile\|everyday\|follow\|please\|mean" | tr " " "\n" > y
+cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "reason\|smile\|everyday\|follow\|please\|mean" | tr " " "\n" >> y
+cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "reason\|smile\|everyday\|follow\|please\|mean" | tr " " "\n" >> y
+move y quiz3b.txt
+grep most quiz3b.txt | wc -l 
+grep best quiz3b.txt | wc -l 
+grep universe quiz3b.txt | wc -l 
+grep world quiz3b.txt | wc -l 
+# 4698 | 2378 | 226 | 3156
+
+# Quiz 3.3 (C)
+#  sunshine follow make   
+cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " " | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "sunshine\|follow\|make" | tr " " "\n" > y
+cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "sunshine\|follow\|make" | tr " " "\n" >> y
+cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "sunshine\|follow\|make" | tr " " "\n" >> y
+move y quiz3c.txt
+grep smelliest quiz3c.txt | wc -l 
+grep saddest quiz3c.txt | wc -l 
+grep bluest quiz3c.txt | wc -l 
+grep happiest quiz3c.txt | wc -l 
+# 0 | 11 | 2 | 79
+
+# Quiz 3.4 (D)
+# early observations bills game offense struggling 
+cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " " | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "early\|observations\|bills\|game\|offense\|struggling" | tr " " "\n" > y
+cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "early\|observations\|bills\|game\|offense\|struggling" | tr " " "\n" >> y
+cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "early\|observations\|bills\|game\|offense\|struggling" | tr " " "\n" >> y
+move y quiz3d.txt
+grep referees quiz3d.txt | wc -l 
+grep defense quiz3d.txt | wc -l 
+grep players quiz3d.txt | wc -l 
+grep crowd quiz3d.txt | wc -l 
+# 21 | 1086 | 0 | 391 (with 'still')
+# 28 | 1104 | 633 | 399 (without 'still')
+
+# Quiz 3.5 (E)
+# go romantic date
+cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " " | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "romantic\|date" | tr " " "\n" > y
+cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "romantic\|date" | tr " " "\n" >> y
+cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "romantic\|date" | tr " " "\n" >> y
+move y quiz3e.txt
+grep movies quiz3e.txt | wc -l 
+grep beach quiz3e.txt | wc -l 
+grep mall quiz3e.txt | wc -l 
+grep grocery quiz3e.txt | wc -l 
+# 691 | 709 | 2119 | 211 (with 'go')
+# 69 | 21 | 54 | 0 (without 'go')
+
+
+
+# Quiz 3.6 (F)
+# well|pretty|sure|granny|old|bagpipes|garage|dust|off
+# pretty|granny|old|bagpipes|garage|dust|off
+cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " " | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "pretty\|granny\|old\|bagpipes\|garage\|dust\|off" | tr " " "\n" > y
+cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "pretty\|granny\|old\|bagpipes\|garage\|dust\|off" | tr " " "\n" >> y
+cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "pretty\|granny\|old\|bagpipes\|garage\|dust\|off" | tr " " "\n" >> y
+move y quiz3f.txt
+grep horse quiz3f.txt | wc -l 
+grep motorcycle quiz3f.txt | wc -l 
+grep way quiz3f.txt | wc -l 
+grep phone quiz3f.txt | wc -l 
+# 531 | 0 | 0 | 1948 (with 'well' 'sure')
+# 801 | 73 | 17293 | 2540 (without 'well' 'sure')
+
+# Quiz 3.7 (G)
+# ohhhhh|#pointbreak|tomorrow|love|film|seen|in|quite|some
+# tomorrow|love|film|seen
+cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " " | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "tomorrow\|love\|film\|seen" | tr " " "\n" > y
+cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "tomorrow\|love\|film\|seen" | tr " " "\n" >> y
+cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "tomorrow\|love\|film\|seen" | tr " " "\n" >> y
+move y quiz3g.txt
+grep years quiz3g.txt | wc -l
+grep thing quiz3g.txt | wc -l 
+grep time quiz3g.txt | wc -l 
+grep weeks quiz3g.txt | wc -l 
+# 24898 | 128302 | 136922 | 13331 (almost everything)
+# 0 | 7917 | 7391 | 430 (restrictted)
+
+
+# Quiz 3.8 (H)
+# after ice bucket challenge louis push long wet hair eyes little
+cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " " | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "after\|ice\|bucket\|challenge\|louis\|push\|long\|wet\|hair\|eyes\|little" | tr " " "\n" > y
+cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "after\|ice\|bucket\|challenge\|louis\|push\|long\|wet\|hair\|eyes\|little" | tr " " "\n" >> y
+cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "after\\|ice\\|bucket\\|challenge\\|louis\\|push\\|long\\|wet\\|hair\\||eyes\\||little" | tr " " "\n" >> y
+move y quiz3h.txt
+grep ears quiz3h.txt | wc -l 
+grep eyes quiz3h.txt | wc -l 
+grep toes quiz3h.txt | wc -l 
+grep fingers quiz3h.txt | wc -l 
+# 15449 | 8999 | 798 | 688
+
+# Quiz 3.9 (I)
+# grateful\|good\|times\|keep\|faith\|during
+cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " " | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "grateful\|good\|times\|keep\|faith\|during" | tr " " "\n" > y
+cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "grateful\|good\|times\|keep\|faith\|during" | tr " " "\n" >> y
+cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "grateful\|good\|times\|keep\|faith\|during" | tr " " "\n" >> y
+move y quiz3i.txt
+grep sad quiz3i.txt | wc -l 
+grep worse quiz3i.txt | wc -l 
+grep hard quiz3i.txt | wc -l 
+grep bad quiz3i.txt | wc -l 
+# 1913 | 826 | 7056 | 6797
+
+# Quiz 3.10 (J)
+# cutest\|thing\|ever\|seen
+cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " " | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "cutest\|thing\|ever\|seen" | tr " " "\n" > y
+cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "cutest\|thing\|ever\|seen" | tr " " "\n" >> y
+cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[,;:'-]" " "  | tr "." "\n" | tr "?" "\n" | tr "!" "\n" | grep -w "cutest\|thing\|ever\|seen" | tr " " "\n" >> y
+move y quiz3j.txt
+grep asleep quiz3j.txt | wc -l 
+grep callous quiz3j.txt | wc -l 
+grep insensitive quiz3j.txt | wc -l 
+grep insane quiz3j.txt | wc -l 
+# 206 | 17 | 14 | 197
+
+'''
+
+'''
+# after ice bucket challenge louis push long wet hair eyes little
+cat en_US.blogs.txt | tr "[A-Z]" "[a-z]" | tr "[.;:?!()]" "\n" | tr "," " " | sed "s/ for /:/g" | sed "s/ and /:/g" | sed "s/ nor /:/g" | sed "s/ but /:/g" | sed "s/ or /:/g" | sed "s/ yet /:/g" | sed "s/ so /:/g" | sed "s/ to /:/g" | sed "s/ in /:/g"  | sed"s/ of /:/g" | sed "s/ that /:/g" | sed "s/ - /:/g" | sed "s/ from /:/g" | sed "s/ after /:/g" | sed "s/ on /:/g" |tr ":" "\n" | sed "s/ as /:/g" | sed "s/ by /:/g"| sed "s/ with /:/g" |tr ":" "\n"  > en_US.blogs.phrases.txt
+cat en_US.news.txt | tr "[A-Z]" "[a-z]" | tr "[.;:?!()]" "\n" | tr "," " " | sed "s/ for /:/g" | sed "s/ and /:/g" | sed "s/ nor /:/g" | sed "s/ but /:/g" | sed "s/ or /:/g" | sed "s/ yet /:/g" | sed "s/ so /:/g" | sed "s/ to /:/g" | sed "s/ in /:/g"  | sed"s/ of /:/g" | sed "s/ that /:/g" | sed "s/ - /:/g" | sed "s/ from /:/g" | sed "s/ after /:/g" | sed "s/ on /:/g" |tr ":" "\n" | sed "s/ as /:/g" | sed "s/ by /:/g"| sed "s/ with /:/g" |tr ":" "\n"  > en_US.news.phrases.txt
+cat en_US.twitter.txt | tr "[A-Z]" "[a-z]" | tr "[.;:?!()]" "\n" | tr "," " " | sed "s/ for /:/g" | sed "s/ and /:/g" | sed "s/ nor /:/g" | sed "s/ but /:/g" | sed "s/ or /:/g" | sed "s/ yet /:/g" | sed "s/ so /:/g" | sed "s/ to /:/g" | sed "s/ in /:/g"  | sed"s/ of /:/g" | sed "s/ that /:/g" | sed "s/ - /:/g" | sed "s/ from /:/g" | sed "s/ after /:/g" | sed "s/ on /:/g" |tr ":" "\n" | sed "s/ as /:/g" | sed "s/ by /:/g"| sed "s/ with /:/g" |tr ":" "\n"  > en_US.twitter.phrases.txt
+
+
+cat en_US.blogs.txt | tr "[.;!?]"  "\n" | tr "[A-Z]" "[a-z]" | tr "," " " > all.sentences.txt
+cat en_US.news.txt | tr "[.;!?]"  "\n" | tr "[A-Z]" "[a-z]" | tr "," " " >> all.sentences.txt
+cat en_US.twitter.txt | tr "[.;!?]"  "\n" | tr "[A-Z]" "[a-z]" | tr "," " " >> all.sentences.txt
+
+# -------------------------------------
+grep "of beer"  all.sentences.txt | wc -l
+grep "of pretzels"  all.sentences.txt | wc -l
+grep "of soda"  all.sentences.txt | wc -l
+grep "of cheese"  all.sentences.txt | wc -l
+# 1376 | 10 | 111 | 430
+
+grep "case of beer"  all.sentences.txt | wc -l
+grep "case of pretzels"  all.sentences.txt | wc -l
+grep "case of soda"  all.sentences.txt | wc -l
+grep "case of cheese"  all.sentences.txt | wc -l
+# 27 | 0 | 1 | 0
+
+# 3257 | 41 | 195 | 1531
+
+bow == 3gram  "case of beer"
+rank = "case of beer"
+# -------------------------------------
+
+grep "the most" all.sentences.txt | wc -l
+grep "the best" all.sentences.txt | wc -l
+grep "the universe" all.sentences.txt | wc -l
+grep "the world" all.sentences.txt | wc -l
+# 32829 | 39868 | 1903 | 36335
+
+grep "mean the most" all.sentences.txt | wc -l
+grep "mean the best" all.sentences.txt | wc -l
+grep "mean the universe" all.sentences.txt | wc -l
+grep "mean the world" all.sentences.txt | wc -l
+# 25 | 4 | 3 | 305
+
+# 4698 | 2378 | 226 | 3156
+
+bow != 3gram
+2o3 = null
+rank = "mean the world"
+
+# -------------------------------------
+
+grep "the smelliest" all.sentences.txt | wc -l
+grep "the saddest" all.sentences.txt | wc -l
+grep "the bluest" all.sentences.txt | wc -l
+grep "the happiest" all.sentences.txt | wc -l
+# 5 | 185 | 29 | 481
+
+grep "me the smelliest" all.sentences.txt | wc -l
+grep "me the saddest" all.sentences.txt | wc -l
+grep "me the bluest" all.sentences.txt | wc -l
+grep "me the happiest" all.sentences.txt | wc -l
+# 0 | 0 | 0 | 45
+
+# 0 | 11 | 2 | 79
+
+bow = 3gram "me the happiest"
+2o3 = "me the happiest"
+rank = "me the happiest"
+
+# -------------------------------------
+
+grep "the referees" all.sentences.txt | wc -l
+grep "the defense" all.sentences.txt | wc -l
+grep "the players" all.sentences.txt | wc -l
+grep "the crowd" all.sentences.txt | wc -l
+# 65 | 1676 | 2193 | 3920
+
+grep "but the referees" all.sentences.txt | wc -l
+grep "but the defense" all.sentences.txt | wc -l
+grep "but the players" all.sentences.txt | wc -l
+grep "but the crowd" all.sentences.txt | wc -l
+# 0 | 18| 22 | 43
+
+# 21 | 1086 | 0 | 391 (with 'still')
+
+bow != ngram
+2o3 = "the crowd"
+rank = "the crowd"
+
+# -------------------------------------
+
+grep "the movies" all.sentences.txt | wc -l
+grep "the beach" all.sentences.txt | wc -l
+grep "the mall" all.sentences.txt | wc -l
+grep "the grocery" all.sentences.txt | wc -l
+# 1183 | 3707 | 1613 | 948
+
+grep "at the movies" all.sentences.txt | wc -l
+grep "at the beach" all.sentences.txt | wc -l
+grep "at the mall" all.sentences.txt | wc -l
+grep "at the grocery" all.sentences.txt | wc -l
+# 172 | 604 | 416 | 260
+
+# 691 | 709 | 2119 | 211 (with 'go')
+# 69 | 21 | 54 | 0 (without 'go')
+
+bow != ngram (in both cases)
+2o3 = "at the beach"
+rank = "at the beach"
+
+# -------------------------------------
+
+grep "my horse" all.sentences.txt | wc -l
+grep "my motorcycle" all.sentences.txt | wc -l
+grep "my way" all.sentences.txt | wc -l
+grep "my phone" all.sentences.txt | wc -l
+# 145 | 22 | 4763 | 4591
+
+grep "on my horse" all.sentences.txt | wc -l
+grep "on my motorcycle" all.sentences.txt | wc -l
+grep "on my way" all.sentences.txt | wc -l
+grep "on my phone" all.sentences.txt | wc -l
+# 9 | 6 | 2381 | 767
+
+# 531 | 0 | 0 | 1948 (with 'well' 'sure') (this result does not make sense)
+# 801 | 73 | 17293 | 2540 (without 'well' 'sure')
+
+bow1 != 3gram
+bow2 == 3gram
+
+2of3 = "on my way"
+
+rank = "on my phone" (on first bad result)
+rank = "on my way" (on second result)
+
+# -------------------------------------
+
+grep "some years" all.sentences.txt | wc -l
+grep "some thing" all.sentences.txt | wc -l
+grep "some time" all.sentences.txt | wc -l
+grep "some weeks" all.sentences.txt | wc -l
+# 324 | 2021 | 4264 | 79
+
+grep "quite some years" all.sentences.txt | wc -l
+grep "quite some thing" all.sentences.txt | wc -l
+grep "quite some time" all.sentences.txt | wc -l
+grep "quite some weeks" all.sentences.txt | wc -l
+# 2 | 1 | 376 | 0
+
+# 24898 | 128302 | 136922 | 13331 (almost everything)
+# 0 | 7917 | 7391 | 430 (restricted)
+
+bow == 3gram "quite some time" (not restricted)
+bow != 3gram "quite some time" (restricted)
+2o3 == "quite some time" (both)
+rank == "quite some time" (both)
+
+# -------------------------------------
+
+grep "little ears" all.sentences.txt | wc -l
+grep "little eyes" all.sentences.txt | wc -l
+grep "little toes" all.sentences.txt | wc -l
+grep "little fingers" all.sentences.txt | wc -l
+# 13 | 26 | 6 | 34
+
+grep "his little ears" all.sentences.txt | wc -l
+grep "his little eyes" all.sentences.txt | wc -l
+grep "his little toes" all.sentences.txt | wc -l
+grep "his little fingers" all.sentences.txt | wc -l
+# 1 | 3 | 0 | 4
+
+# 15449 | 8999 | 798 | 688
+
+bow != 3gram
+2o3 => "his little fingers"
+rank => "tie between eyes and fingers"
+
+# -------------------------------------
+
+grep "the sad" all.sentences.txt | wc -l
+grep "the worse" all.sentences.txt | wc -l
+grep "the hard" all.sentences.txt | wc -l
+grep "the bad" all.sentences.txt | wc -l
+# 1091 | 400 | 4176 | 2817
+
+grep "during the sad" all.sentences.txt | wc -l
+grep "during the worse" all.sentences.txt | wc -l
+grep "during the hard" all.sentences.txt | wc -l
+grep "during the bad" all.sentences.txt | wc -l
+# 0 | 0 | 4 | 6
+
+# 1913 | 826 | 7056 | 6797
+
+bow != 3gram
+2o3 => "during the hard"
+rank = "during the hard"
+'''
+
+
+
+
+
+
+
+
+
+
 '''

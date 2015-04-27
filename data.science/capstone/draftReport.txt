@@ -1,0 +1,195 @@
+---  
+title: "Capstone Milestone Report"  
+author: "Ron Coursera"  
+date: "Sunday, March 29, 2015"  
+output: html_document  
+---  
+  
+### Data Description 
+
+Data preprocessing was done on a SUSE SLES 11 platform which ran GNU commands running in UTF-8 mode. The platform was an Amazon AWS c3.xlarge image. For this initial data preparation and initial analysis, most text processing was done using standard GNU command line tools such as *awk*, *cut*, *grep*, *sed*, *sort*, *tr*, *uniq*, and *wc*.  
+  
+The initial dataset for this project was obtained from the following Coursera url:  
+https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip  
+
+The zip file contains 12 files sampled for four languages - de_DE, en_US, fi_FI, ru_RU - from three different sources - blogs, news, and twitter feeds.  
+
+File Name | Language | Source | Lines | Words
+ ------ | ------ | ------ | ----- | ----
+de_DE/de_DE.blogs.txt | DE | blogs | 371440 | 12652984
+de_DE/de_DE.news.txt | DE | news | 244743 | 13216346
+de_DE/de_DE.twitter.txt | DE | twitter | 947774 | 11802976
+en_US/en_US.blogs.txt | EN | news | 899288 | 37334114
+en_US/en_US.news.txt | EN | blogs | 1010242 | 34365936
+en_US/en_US.twitter.txt | EN | twitter | 2360148 | 30359804
+fi_FI/fi_FI.blogs.txt | FI | news | 439785 | 12731004
+fi_FI/fi_FI.news.txt | FI | blogs | 485758 | 10444685
+fi_FI/fi_FI.twitter.txt | FI | twitter | 285214 | 3152757
+ru_RU/ru_RU.blogs.txt | RU | news | 337100 | 9405377
+ru_RU/ru_RU.news.txt | RU | blogs | 196360 | 9115829
+ru_RU/ru_RU.twitter.txt | RU | twitter | 881414 | 9223265
+
+The above table is summarized in the following figure. At this stage, words and lines are defined as per the GNU utility *wc* without any preprocessing. While it appears that the number of lines sourced from twitter dominate the data set, the actual number of words from each source is roughly equal. This is partly due to the fact that lines in the blog and news sources contain multiple sentences. These multi-sentence lines are broken into individual sentences in the process below. Also note that the en_US corpus include over twice as many words as any of the other language sources.
+
+
+![Raw File Counts](https://raw.githubusercontent.com/roncoursera/coursera.org/master/data.science/capstone/wc_raw.png "Figure 1: Raw file counts")
+
+
+### Common Dictionary  
+
+In order to check the word frequency count, a common dictionary was prepared by extracting German, English, Finnish, and Russian dictionaries from the Unix tool *aspell*. To create the word frequency results reported below (including the Zipf chart), the words extracted from the raw data files were filtered to include only words matching those in the common dictionary effectively filtering out misspellings, garbage entries, and foreign words sourced outside these four languages.
+
+Speculatively, there could be a large number of English words in German, Finnish, and even Russian tweets as well as inclusion of Russian in Finnish sources. A subject for later exploration.
+ 
+```bash  
+aspell --lang de dump master | aspell --lang de expand | tr '[:upper:]' '[:lower:]' | tr ' ' '\n' | sort > german.dic  
+aspell --lang en dump master | aspell --lang en expand | tr '[:upper:]' '[:lower:]' | tr ' ' '\n' | sort > english.dic  
+aspell --lang fi dump master | aspell --lang fi expand | tr '[:upper:]' '[:lower:]' | tr ' ' '\n' | sort > finnish.dic  
+aspell --lang ru-yeyo dump master | aspell --lang ru expand | tr '[:upper:]' '[:lower:]'  | tr ' ' '\n' | sort > russian.dic  
+```  
+  
+### Data Processing 
+
+In order to extract a list of sentences and a list of words from the files, the following commands were used. The original intent of this set of commands was to preserve apostrophes, but the actual implementation stripped them. The processing is summarized as follows:
+* convert single quotes and single ticks into unicode apostrophe  
+* remove double apostrophe  
+* remove double quotes, ...  
+* split into lines defined by periods, semicolons, explanation points, and question marks  
+* convert to lower case  
+* remove digits  
+* remove commas  
+* reduce white space to singe space  
+* remove any dos carriage returns or new lines  
+
+A file of sentences is created from all sources in a single language, separating lines with multiple sentences into one sentence per line.
+```bash  
+cat *_*.txt | tr "[\'\`\´]" "\’" | sed "s/’’//g" | tr "[\"\…\»\«\„\“\”]" ":-:" | sed 's/:-://g' | tr "[\.\;\!\?]" "\n"| tr "[A-Z]" "[a-z]" | tr "[:punct:]" " " | tr "[:digit:]" " " | tr "," " " | sed 's/\s\+/ /g' | dos2unix > all.sentences.txt  
+```  
+  
+The processed file of sentences is used to create an ordered file of words and their frequencies.  
+```bash  
+cat all.sentences.txt | tr -s " " "\n"  | dos2unix > x  
+sort x > y; rm x  
+uniq -c y > z; rm y  
+sort -bnr z > freq.count; rm z  
+# 25% of the words frequency 3 or more  
+grep -v "^      1 " freq.count | grep -v "^      2 " > freq.count.trunc  
+cut -b9- freq.count.trunc  | sort  > this.list  
+# filter out words not in common dictionary  
+comm -12 this.list ../common.dic > dict.list  
+rm final.count  
+for d in `cat dict.list`; do  
+  grep -w "$d" freq.count.trunc >> final.count  
+done  
+sort -bnr final.count | uniq > final.count.sorted  
+```  
+
+The word frequency file is processed to create histogram data of word frequencies.  
+```bash
+cat final.count.sorted | cut -b1-8 | uniq -c > word.freq.count
+```
+  
+The file of sentences is processed to create ordered files of ngrams of length 2,3,4, and 5 and their frequencies.   
+```bash  
+cat all.sentences.txt | awk '{n=split($0,a); for (i=0; ++i < n;) print a[i],a[i+1]}' | sort > ngrams2.sort  
+uniq -c ngrams2.sort |sort -bnr > ngrams2.freq; rm ngrams2.sort  
+  
+cat all.sentences.txt | awk '{n=split($0,a); for (i=0; ++i < n-1;) print a[i],a[i+1],a[i+2]}' | sort > ngrams3.sort  
+uniq -c ngrams3.sort |sort -bnr > ngrams3.freq; rm ngrams3.sort  
+  
+cat all.sentences.txt | awk '{n=split($0,a); for (i=0; ++i < n-2;) print a[i],a[i+1],a[i+2],a[i+3]}' | sort > ngrams4.sort  
+uniq -c ngrams4.sort |sort -bnr > ngrams4.freq; rm ngrams4.sort  
+  
+cat all.sentences.txt | awk '{n=split($0,a); for (i=0; ++i < n-3;) print a[i],a[i+1],a[i+2],a[i+3],a[i+4]}' | sort > ngrams5.sort  
+uniq -c ngrams5.sort |sort -bnr > ngrams5.freq; rm ngrams5.sort  
+```  
+
+The ngram files are processed to create histogram data of ngram frequencies.
+```bash
+cat ngrams2.freq | cut -b1-8 | uniq -c > ngrams2.count
+cat ngrams3.freq | cut -b1-8 | uniq -c > ngrams3.count
+cat ngrams4.freq | cut -b1-8 | uniq -c > ngrams4.count
+cat ngrams5.freq | cut -b1-8 | uniq -c > ngrams5.count
+```
+
+### Data Discussion
+
+**How should you handle punctuation?** 
+  
+This data preparation removes most punctuation.
+  
+**The data contains lots of times, dates, numbers and currency values.** 
+**How to handle these? Are they useful for prediction?** 
+  
+This data preparation removes numbers of all types.  
+  
+**How do you find typos in the data?** 
+  
+This data preparation removes all misspellings for the word frequency counts by comparing words with a multi-language dictionary. Such a dictionary allows for multi-lingual texting and writings. At this stage, typos are left in place for n-grams analysis. If needed, Unix utils *aspell* or *ispell* can identify misspelled words but may need new wrappers to make them appropriate for use in 'next word prediction.'  
+  
+**How do you identify garbage, or the wrong language?** 
+  
+The use of a common multi-language dictionary (DE, EN, FI, RU) scrubs most garbage from word counts while allowing for the use of load words or mixed language text. An additional filter to remove ngrams that appear only once or twice in the corpus also acts to remove additional garbage.  
+  
+**How do you define profanity?** 
+**How do you ensure you don't remove words you want to include?** 
+  
+Profanity is not explicitly filtered at this initial stage of exploration.  
+  
+**How do you handle capital and lower cases?** 
+  
+At this stage of the project, all words are translated into lower case. It is noted that this can cause inappropriate conflations such as the name Bill becoming the common word "bill"  
+  
+**What is the best set of features you might use to predict the next word?** 
+  
+Using the project's quizzes as a test set, the simple prediction model can be built from a combination of ranking by frequency of ngrams of various length (3-grams, 4-grams and 5-grams) and, given a list of suggested words, a weighted probability based on key word associations. Key words are defined as the words remaining after a sentence has been scrubbed of common pronouns, prepositions, conjunctions, interjections, existence verbs, and common verbs such as 'has', 'had', 'have.'  
+
+More complex models could be built that incorporate grammar rules or pattern recognition ('a' generally follows 'b' but rarely precedes it).  
+
+**Some words are more frequent than others** 
+
+![Word Frequencies](https://raw.githubusercontent.com/roncoursera/coursera.org/master/data.science/capstone/word_freq.png "Figure 2: Word Frequencies")
+    
+**what are the distributions of word frequencies?** 
+
+The distributions of the dictionary filtered word frequencies is roughly normal where there are a few very frequent words, a few very rare words and a large number of words that are not rare or common as seen in the figure below.  
+
+![Word Frequency Distribution](https://raw.githubusercontent.com/roncoursera/coursera.org/master/data.science/capstone/word_hist.png "Figure 3: Word Frequency Distribution")
+
+**What are the frequencies of 2-grams and 3-grams in the dataset?** 
+
+The following table shows the total ngrams available in the en_US set after processing as discussed above. The last column shows the number of ngrams that only appear once in the corpus. The accompanying chart shows the number of ngrams for each charted frequency excluding the frequency of ngrams that appear just once.  
+
+filename | total ngrams | freq = 1
+-------- | ------------ | --------
+ngrams2.freq | 13300796 |  3849378   
+ngrams3.freq | 40009866 | 33060833
+ngrams4.freq | 64100584 | 58058222
+ngrams5.freq | 64424906 | 61599600
+
+The most obvious feature of the ngram frequencies is that there are fewer long ngrams than short ngrams.  
+
+![Ngram Frequencies](https://raw.githubusercontent.com/roncoursera/coursera.org/master/data.science/capstone/ngram_freq.png "Figure 4: Ngram Frequencies")
+   
+The distribution of the ngrams, while roughly normal for the shorter ngrams, skews left with longer ngrams.  
+
+![Ngram Histogram](https://raw.githubusercontent.com/roncoursera/coursera.org/master/data.science/capstone/ngram_hist.png "Figure 4: Ngram Histogram")
+
+**How many unique words do you need in a frequency sorted dictionary** 
+**to cover 50% of all word instances in the language? 90%?** 
+
+In the en_US corpus, the dictionary filtered word list includes 74715 unique words in a filtered corpus of 99,404,001 words. From the filtered list, the first 113 words appear 49,702,001 times (~50%) and you would need the first 5200 words, which appear 89,391,763 times, to cover 90% of the corpus.  
+  
+**How do you evaluate how many of the words come from foreign languages?** 
+
+The dictionary processing used above could be extended to include additional languages and words not found in the original common dictionary could then be evaluated against the extended dictionary. But this line of inquiry has not been followed.  
+
+**Can you think of a way to increase the coverage**
+
+One way to increase coverage would be to work from word roots. There are common ways to take a common root such as "*careful*" and extend it to cover "*carefully*" and "*carefulness*" or a verb such as "*compute*" to cover "*computed*" and "*computing*."
+
+**Zipf's Law:  Word Frequency ~ 1/(Word Rank)**
+
+Following the lead of [Winston A. Saunders] (https://class.coursera.org/dsscapstone-003/forum/thread?thread_id=129) , the word frequency versus word rank was plotted. There is an interesting drop off in the German plot. This result has not been analysed but might be an artifact of the data collection or data processing.  
+
+![Zipf's Law](https://raw.githubusercontent.com/roncoursera/coursera.org/master/data.science/capstone/zipf.png "Figure 2: Zipf's Law")

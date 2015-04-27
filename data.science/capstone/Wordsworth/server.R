@@ -1,12 +1,13 @@
 library(shiny)
 library(stringr)
 
-enBlogs.ngrams <- read.table("http://rhinohide.org/data/coursera.org/data.science/capstone/final/en_US/en_US.blogs.ngrams.nocnt",header=FALSE,sep=",", stringsAsFactors=FALSE)
-enNews.ngrams <- read.table("http://rhinohide.org/data/coursera.org/data.science/capstone/final/en_US/en_US.news.ngrams.nocnt",header=FALSE,sep=",", stringsAsFactors=FALSE)
-enTwitter.ngrams <- read.table("http://rhinohide.org/data/coursera.org/data.science/capstone/final/en_US/en_US.twitter.ngrams.nocnt",header=FALSE,sep=",", stringsAsFactors=FALSE)
+enBlogs.ngrams <- read.table("http://rhinohide.org/data/coursera.org/data.science/capstone/final/en_US/en_US.blogs.ngrams.nocnt.500000",header=FALSE,sep=",", stringsAsFactors=FALSE)
+enNews.ngrams <- read.table("http://rhinohide.org/data/coursera.org/data.science/capstone/final/en_US/en_US.news.ngrams.nocnt.500000",header=FALSE,sep=",", stringsAsFactors=FALSE)
+enTwitter.ngrams <- read.table("http://rhinohide.org/data/coursera.org/data.science/capstone/final/en_US/en_US.twitter.ngrams.nocnt.500000",header=FALSE,sep=",", stringsAsFactors=FALSE)
 
 hardy.ngrams <- read.table("http://rhinohide.org/data/uccs.edu/project/shiny/data/hardy.ngrams.nocnt",header=FALSE,sep=",", stringsAsFactors=FALSE)
 dickens.ngrams <- read.table("http://rhinohide.org/data/uccs.edu/project/shiny/data/dickens.ngrams.nocnt",header=FALSE,sep=",", stringsAsFactors=FALSE)
+
 
 parseText <- function(text){
   text <- tolower(text)
@@ -73,21 +74,48 @@ shinyServer(
   
   function(input, output) {
   
-  
+    getNextWord <- reactive({
+      if (input$wordsrc=="blogsopt") {
+        nw = word(getNextGram(enBlogs.ngrams,parseText(input$inText),6),start=-1,end=-1)
+      }else if (input$wordsrc=="newsopt") {
+        nw =word(getNextGram(enNews.ngrams,parseText(input$inText),6),start=-1,end=-1)
+      }else if (input$wordsrc=="twitteropt") {
+        nw =word(getNextGram(enTwitter.ngrams,parseText(input$inText),6),start=-1,end=-1)
+      }else if (input$wordsrc=="dickensopt") {
+        nw = word(getNextGram(dickens.ngrams,parseText(input$inText),6),start=-1,end=-1)
+      }else if (input$wordsrc=="hardyopt") {
+        nw = word(getNextGram(hardy.ngrams,parseText(input$inText),6),start=-1,end=-1)
+      }else{
+        nw = "puppies"
+      }
+      return(paste("Next Word:", nw))
+    })
+    
+    output$loadText <- renderText({ 
+      "... loading complete"
+    })
+    
     output$enBlogsText <- renderText({ 
-      paste("Project Blogs: ", getNextGram(enBlogs.ngrams,parseText(input$inText),6))
+      getNextGram(enBlogs.ngrams,parseText(input$inText),6)
     })
+    
     output$enNewsText <- renderText({ 
-      paste("Project News: ", getNextGram(enNews.ngrams,parseText(input$inText),6))
+      getNextGram(enNews.ngrams,parseText(input$inText),6)
     })
+    
     output$enTwitterText <- renderText({ 
-      paste("Project Twitter: ", getNextGram(enTwitter.ngrams,parseText(input$inText),6))
+      getNextGram(enTwitter.ngrams,parseText(input$inText),6)
     })
+    
     output$dickensText <- renderText({ 
-      paste("Charles Dickens: ", getNextGram(dickens.ngrams,parseText(input$inText),6))
+      getNextGram(dickens.ngrams,parseText(input$inText),6)
     })
+    
     output$hardyText <- renderText({ 
-      paste("Thomas Harding: ", getNextGram(hardy.ngrams,parseText(input$inText),6))
+      getNextGram(hardy.ngrams,parseText(input$inText),6)
     })
 
+    output$nextWordText <- renderText({getNextWord()})
+    
+    
 })
